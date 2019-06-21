@@ -15,7 +15,7 @@ class MasterViewController: UITableViewController {
                    (city: "Debrecen", county: "Hajdú-Bihar"),
                    (city: "Szeged", county: "Csongrád"),
                    (city: "Veszprém", county: "Veszprém"),
-                   (city: "Székesfehérvár", county: "Fejér")]
+                   (city: "Nevesincs", county: "Huszadik")]
 
 
     override func viewDidLoad() {
