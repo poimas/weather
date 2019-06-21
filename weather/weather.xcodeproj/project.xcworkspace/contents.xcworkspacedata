@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/user/Documents/a&#x301;lla&#x301;s/attrecto/weather/weather/weather/CityDetailViewController.swift">
+   </FileRef>
+   <FileRef
       location = "self:weather.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,5 +1,5 @@
 //
-//  MasterViewController.swift
+//  CityListViewController.swift
 //  weather
 //
 //  Created by user on 2019. 06. 20..
@@ -8,21 +8,22 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class CityListViewController: UITableViewController {
 
-    var detailViewController: DetailViewController? = nil
-    var objects = [(city: "Budapest", county: "Pest"),
+    var detailViewController: CityDetailViewController? = nil
+    let objects = [(city: "Budapest", county: "Pest"),
                    (city: "Debrecen", county: "Hajdú-Bihar"),
                    (city: "Szeged", county: "Csongrád"),
                    (city: "Veszprém", county: "Veszprém"),
                    (city: "Nevesincs", county: "Huszadik")]
 
+    // MARK: - UI lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if let split = splitViewController {
             let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? CityDetailViewController
         }
     }
 
@@ -37,8 +38,8 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let object = objects[indexPath.row]
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object.city
+                let controller = (segue.destination as! UINavigationController).topViewController as! CityDetailViewController
+                controller.cityName = object.city
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -52,11 +53,11 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CityCell
 
         let object = objects[indexPath.row]
-        cell.textLabel!.text = object.city
-        cell.detailTextLabel?.text = object.county
+        cell.name.text = object.city
+        cell.county.text = object.county
         return cell
     }
 
